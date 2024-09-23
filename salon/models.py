@@ -21,6 +21,9 @@ class Salon(Base):
 
     services = relationship('Service', backref='salon')
 
+    def __repr__(self):
+        return f"Salon(name={self.name}, location={self.location})"
+
 
 # Cusotmer model
 class Customer(Base):
@@ -33,6 +36,9 @@ class Customer(Base):
                             secondary=customers_services,
                             back_populates='customers')
     appointments = relationship('Appointment', backref='customer')
+
+    def __repr__(self):
+        return f"Customer(name={self.name})"
 
 
 # Service model
@@ -49,6 +55,9 @@ class Service(Base):
                              back_populates='services')
     appointments = relationship('Appointment', backref='service')
 
+    def __repr__(self):
+        return f"Service(name={self.name}, price={self.price}, salon_id={self.salon_id})"
+
 
 # Appointment model
 class Appointment(Base):
@@ -58,3 +67,6 @@ class Appointment(Base):
     created_at = Column(DateTime, default=func.now())
     customer_id = Column(Integer, ForeignKey('customers.id'))
     service = Column(Integer, ForeignKey('services.id'))
+
+    def __repr__(self):
+        return f"Appointment(created_at={self.created_at}, customer-id={self.customer_id}, service={self.service})"
