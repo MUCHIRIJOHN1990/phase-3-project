@@ -1,9 +1,14 @@
 from sqlalchemy import (Column, Integer, String, DateTime, func, Table, Float,
-                        ForeignKey, UniqueConstraint)
-from sqlalchemy.orm import declarative_base, relationship
+                        ForeignKey, UniqueConstraint, create_engine)
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+
+DATABASE_URL = 'sqlite:///salon.db'
 
 # Create Base class, subclassed by all moddels
 Base = declarative_base()
+engine = create_engine(DATABASE_URL)
+Session = sessionmaker(bind=engine)
+session = Session()
 
 customers_services = Table(
     'customers_services', Base.metadata,

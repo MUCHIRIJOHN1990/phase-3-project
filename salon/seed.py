@@ -1,26 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
-from faker.exceptions import UniquenessException
 import random
-from models import Salon, Customer, Service, Appointment
-
-DATABASE_URL = 'sqlite:///salon.db'
+from models import Salon, Customer, Service, Appointment, session
 
 fake = Faker()
 
 
-def create_session():
-    engine = create_engine(DATABASE_URL)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    return session
-
-
 def seed_data():
     print("seeding data...")
-
-    session = create_session()
 
     session.query(Salon).delete()
     session.query(Customer).delete()
