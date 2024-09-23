@@ -1,5 +1,5 @@
-from sqlalchemy import (Column, Integer, String, DateTime, func, Table,
-                        ForeignKey)
+from sqlalchemy import (Column, Integer, String, DateTime, func, Table, Float,
+                        ForeignKey, UniqueConstraint)
 from sqlalchemy.orm import declarative_base, relationship
 
 # Create Base class, subclassed by all moddels
@@ -47,7 +47,7 @@ class Service(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    price = Column(Integer, nullable=False)
+    price = Column(Float, nullable=False)
     salon_id = Column(Integer, ForeignKey('salons.id'))
 
     customers = relationship('Customer',
@@ -66,7 +66,13 @@ class Appointment(Base):
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, default=func.now())
     customer_id = Column(Integer, ForeignKey('customers.id'))
-    service = Column(Integer, ForeignKey('services.id'))
+    service_id = Column(Integer, ForeignKey('services.id'))
+    appointment_time = Column(DateTime, default=func.now())
+
+    __table_args__ = (UniqueConstraint('customer_id',
+                                       'service_id',
+                                       'appointment_time',
+                                       name='uq_customer_service_time'), )
 
     def __repr__(self):
         return f"Appointment(created_at={self.created_at}, customer-id={self.customer_id}, service={self.service})"

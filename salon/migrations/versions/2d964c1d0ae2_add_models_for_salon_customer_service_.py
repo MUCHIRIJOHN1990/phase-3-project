@@ -1,8 +1,8 @@
 """add models for salon, customer, service and appointment
 
-Revision ID: c7934323ee56
+Revision ID: 2d964c1d0ae2
 Revises: f4b5614586e8
-Create Date: 2024-09-23 18:46:23.879766
+Create Date: 2024-09-23 19:55:14.900999
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'c7934323ee56'
+revision: str = '2d964c1d0ae2'
 down_revision: Union[str, None] = 'f4b5614586e8'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -34,7 +34,7 @@ def upgrade() -> None:
     op.create_table('services',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
-    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('price', sa.Float(), nullable=False),
     sa.Column('salon_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['salon_id'], ['salons.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -43,10 +43,12 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('customer_id', sa.Integer(), nullable=True),
-    sa.Column('service', sa.Integer(), nullable=True),
+    sa.Column('service_id', sa.Integer(), nullable=True),
+    sa.Column('appointment_time', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], ),
-    sa.ForeignKeyConstraint(['service'], ['services.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.ForeignKeyConstraint(['service_id'], ['services.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('customer_id', 'service_id', 'appointment_time', name='uq_customer_service_time')
     )
     op.create_table('customers_services',
     sa.Column('customer_id', sa.Integer(), nullable=False),
