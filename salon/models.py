@@ -32,7 +32,7 @@ class Customer(Base):
     __tablename__ = "customers"
 
     id = Column(Integer, primary_key=True)
-    name = Column(Integer, nullable=False)
+    name = Column(String, nullable=False)
     phone = Column(String, nullable=False)
 
     # Appointment linking to services
