@@ -157,3 +157,14 @@ def update_service_price():
         print(f"Success: Price of service {service_id} updated!")
     except Exception as e:
         print(e)
+
+
+def remove_service():
+    from helpers import validate_int
+    try:
+        service_id = input("Enter service id: ")
+        validate_int(service_id)
+        ServiceService(session).delete_service(service_id=service_id)
+        print(f"Success: Service with id {service_id} deleted!")
+    except Exception as e:
+        print(e)
