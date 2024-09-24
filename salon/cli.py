@@ -2,7 +2,8 @@ from helpers import (exit_program, list_all_salons, list_salon_by_id,
                      add_new_salon, update_salon_location, remove_salon,
                      list_all_customers, list_customer_by_id, add_new_customer,
                      update_customer_phone_number, remove_customer,
-                     list_all_services, list_service_by_id)
+                     list_all_services, list_service_by_id, add_service,
+                     update_service_price)
 
 
 def main():
@@ -35,6 +36,10 @@ def main():
             list_all_services()
         if choice == '12':
             list_service_by_id()
+        if choice == '13':
+            add_service()
+        if choice == '14':
+            update_service_price()
 
 
 def menu():
@@ -58,14 +63,15 @@ def menu():
     print("-----Service-----")
     print("11. List all services")
     print("12. List service by id")
-    print("13. Update service price")
-    print("14. Delete service")
+    print("13. Add service")
+    print("14. Update service price")
+    print("15. Delete service")
     print("-----Appointments-----")
-    print("15. List all appointments")
-    print("16. List appointments by customer")
-    print("17. List appointments by service")
-    print("18. Book an appointment")
-    print("19. Cancel appointment")
+    print("16. List all appointments")
+    print("17. List appointments by customer")
+    print("18. List appointments by service")
+    print("19. Book an appointment")
+    print("20. Cancel appointment")
     print(
         "============================================================================"
     )

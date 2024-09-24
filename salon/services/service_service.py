@@ -6,8 +6,7 @@ class ServiceService:
     def __init__(self, session):
         self.session = session
 
-    def create_service(self, name: str, price: float,
-                       salon_id: int) -> Service:
+    def create_service(self, service_name, service_price, salon_id):
         """Creates a service in the given salon.
 
         Args:
@@ -20,11 +19,13 @@ class ServiceService:
         """
 
         existing_service = self.session.query(Service).filter_by(
-            name=name, salon_id=salon_id).first()
+            name=service_name, salon_id=salon_id).first()
         if existing_service:
             raise ValueError("Error: Service already exists!")
 
-        new_service = Service(name=name, price=price, salon_id=salon_id)
+        new_service = Service(name=service_name,
+                              price=service_price,
+                              salon_id=salon_id)
         self.session.add(new_service)
         self.session.commit()
         return new_service

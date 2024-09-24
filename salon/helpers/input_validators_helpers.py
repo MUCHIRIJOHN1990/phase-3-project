@@ -26,5 +26,12 @@ def validate_float(number):
         ValueError: If given input is not a float
     """
 
-    if not isinstance(number, float):
+    try:
+        float(number)
+    except:
         raise ValueError(f"Error: {number} is not a valid input!")
+
+
+def validate_price(number):
+    validate_int(number)
+    validate_float(number)

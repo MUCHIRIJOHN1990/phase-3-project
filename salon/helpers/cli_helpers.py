@@ -125,3 +125,35 @@ def list_service_by_id():
         print(ServiceService(session).get_service_by_id(service_id=service_id))
     except Exception as e:
         print(e)
+
+
+def add_service():
+    from helpers import validate_price, validate_int
+    try:
+        service_name = input("Enter service name: ")
+        service_price = input("Enter service price: ")
+        validate_price(service_price)
+        salon_id = input("Enter the salon id of the new service: ")
+        validate_int(salon_id)
+
+        print(
+            ServiceService(session).create_service(service_name=service_name,
+                                                   service_price=service_price,
+                                                   salon_id=salon_id))
+    except Exception as e:
+        print(e)
+
+
+def update_service_price():
+    from helpers import validate_price, validate_int
+    try:
+        service_id = input("Enter service id: ")
+        validate_int(service_id)
+        new_price = input("Enter new price: ")
+        validate_price(new_price)
+
+        ServiceService(session).update_service_price(service_id=service_id,
+                                                     new_price=new_price)
+        print(f"Success: Price of service {service_id} updated!")
+    except Exception as e:
+        print(e)
