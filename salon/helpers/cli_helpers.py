@@ -1,4 +1,4 @@
-from services import SalonService
+from services import SalonService, CustomerService
 from models import session
 
 
@@ -53,3 +53,8 @@ def remove_salon():
         print(f"Success: Salon with id {salon_id} deleted!")
     except Exception as e:
         print(e)
+
+
+def list_all_customers():
+    for customer in CustomerService(session).get_all_customers():
+        print(customer)
