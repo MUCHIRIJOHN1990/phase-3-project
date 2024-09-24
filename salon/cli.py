@@ -1,5 +1,5 @@
 from helpers import (exit_program, list_all_salons, list_salon_by_id,
-                     add_new_salon, update_salon_location)
+                     add_new_salon, update_salon_location, remove_salon)
 
 
 def main():
@@ -16,6 +16,8 @@ def main():
             add_new_salon()
         if choice == '4':
             update_salon_location()
+        if choice == '5':
+            remove_salon()
 
 
 def menu():

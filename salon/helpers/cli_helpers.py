@@ -42,3 +42,14 @@ def update_salon_location():
                 salon_id, new_location))
     except Exception as e:
         print(e)
+
+
+def remove_salon():
+    from helpers import validate_int
+    try:
+        salon_id = input("Enter salon id: ")
+        validate_int(salon_id)
+        SalonService(session).delete_salon(salon_id)
+        print(f"Success: Salon with id {salon_id} deleted!")
+    except Exception as e:
+        print(e)
