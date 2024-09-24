@@ -1,6 +1,6 @@
 from helpers import (exit_program, list_all_salons, list_salon_by_id,
                      add_new_salon, update_salon_location, remove_salon,
-                     list_all_customers)
+                     list_all_customers, list_customer_by_id)
 
 
 def main():
@@ -21,6 +21,8 @@ def main():
             remove_salon()
         if choice == '6':
             list_all_customers()
+        if choice == '7':
+            list_customer_by_id()
 
 
 def menu():

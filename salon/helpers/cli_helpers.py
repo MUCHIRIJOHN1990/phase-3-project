@@ -58,3 +58,13 @@ def remove_salon():
 def list_all_customers():
     for customer in CustomerService(session).get_all_customers():
         print(customer)
+
+
+def list_customer_by_id():
+    from helpers import validate_int
+    try:
+        customer_id = input("Enter customer id: ")
+        validate_int(customer_id)
+        print(CustomerService(session).get_customer_by_id(customer_id))
+    except Exception as e:
+        print(e)
