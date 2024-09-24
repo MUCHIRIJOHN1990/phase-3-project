@@ -65,7 +65,7 @@ class CustomerService:
             raise ValueError(f"Error: Customer with name {name} not found!")
         return customer
 
-    def update_customer_phone(self, customer_id, new_phone_number):
+    def update_customer_phone_number(self, customer_id, new_phone_number):
         """Updates a customer's phone number.
 
         Args:

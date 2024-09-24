@@ -50,7 +50,7 @@ class SalonService:
             raise ValueError(f"Error: Salon with id {salon_id} not found!")
         return salon
 
-    def update_salon_name(self, salon_id, new_name) -> Salon:
+    def update_salon_name(self, salon_id, new_name):
         """Updates a salon's name.
 
         Args:
@@ -80,7 +80,7 @@ class SalonService:
         self.session.commit()
         return salon
 
-    def delete_salon(self, salon_id: int):
+    def delete_salon(self, salon_id):
         """Deletes a salon and cascades to services if applicable.
 
         Args:

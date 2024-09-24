@@ -86,7 +86,18 @@ def update_customer_phone_number():
         new_phone_number = input("Enter new phone number: ")
         validate_int(customer_id)
         print(
-            CustomerService(session).update_customer_phone(
+            CustomerService(session).update_customer_phone_number(
                 customer_id=customer_id, new_phone_number=new_phone_number))
+    except Exception as e:
+        print(e)
+
+
+def remove_customer():
+    from helpers import validate_int
+    try:
+        customer_id = input("Enter customer id: ")
+        validate_int(customer_id)
+        CustomerService(session).delete_customer(customer_id=customer_id)
+        print(f"Success: Customer with id {customer_id} deleted!")
     except Exception as e:
         print(e)
