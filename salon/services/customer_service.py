@@ -1,5 +1,4 @@
 from models import Customer
-from helpers import EntityAlreadyExistsException, EntityNotFoundException
 
 
 class CustomerService:
@@ -20,7 +19,7 @@ class CustomerService:
         existing_customer = self.session.query(Customer).filter_by(
             name=name, phone=phone).first()
         if existing_customer:
-            raise EntityAlreadyExistsException
+            raise ValueError("Error: Customer already exists!")
 
         new_customer = Customer(name=name, phone=phone)
         self.session.add(new_customer)
@@ -45,7 +44,8 @@ class CustomerService:
         """
         customer = self.session.query(Customer).get(customer_id)
         if customer is None:
-            raise EntityNotFoundException
+            raise ValueError(
+                f"Error: Customer with id {customer_id} not found!")
         return customer
 
     def get_customer_by_name(self, name: str) -> Customer:
@@ -62,7 +62,7 @@ class CustomerService:
         """
         customer = self.session.query(Customer).filter_by(name=name).first()
         if customer is None:
-            raise EntityNotFoundException
+            raise ValueError(f"Error: Customer with name {name} not found!")
         return customer
 
     def update_customer_phone(self, customer_id: int,

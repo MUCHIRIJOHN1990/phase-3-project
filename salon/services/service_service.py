@@ -1,5 +1,4 @@
 from models import Service
-from helpers import EntityAlreadyExistsException, EntityNotFoundException
 
 
 class ServiceService:
@@ -23,7 +22,7 @@ class ServiceService:
         existing_service = self.session.query(Service).filter_by(
             name=name, salon_id=salon_id).first()
         if existing_service:
-            raise EntityAlreadyExistsException
+            raise ValueError("Error: Service already exists!")
 
         new_service = Service(name=name, price=price, salon_id=salon_id)
         self.session.add(new_service)
@@ -46,7 +45,7 @@ class ServiceService:
         if service := self.session.query(Service).get(service_id):
             return service
         else:
-            raise EntityNotFoundException
+            raise ValueError(f"Error: Service with id {service_id} not found!")
 
     def get_services_by_salon(self, salon_id):
         """Returns all services in the given salon.

@@ -1,5 +1,4 @@
 from models import Salon
-from helpers import EntityAlreadyExistsException, EntityNotFoundException
 
 
 class SalonService:
@@ -22,7 +21,7 @@ class SalonService:
             name=name, location=location).first()
 
         if existing_salon:
-            raise EntityAlreadyExistsException
+            raise ValueError("Error: Salon already exists!")
 
         salon = Salon(name=name, location=location)
         self.session.add(salon)
@@ -48,7 +47,7 @@ class SalonService:
         """
         salon = self.session.query(Salon).get(salon_id)
         if salon is None:
-            raise EntityNotFoundException
+            raise ValueError(f"Error: Salon with id {salon_id} not found!")
         return salon
 
     def update_salon_name(self, salon_id, new_name) -> Salon:

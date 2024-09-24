@@ -1,5 +1,4 @@
 from models import Appointment
-from helpers import EntityAlreadyExistsException, EntityNotFoundException
 
 
 class AppointmentService:
@@ -27,7 +26,8 @@ class AppointmentService:
             service_id=service_id,
             time_slot=time_slot)
         if existing_appointment:
-            raise EntityAlreadyExistsException
+            raise ValueError(
+                "Error: Customer already has an appointment at this time.")
 
         appointment = Appointment(customer_id=customer_id,
                                   service_id=service_id,
@@ -56,9 +56,11 @@ class AppointmentService:
         if appointment := self.session.query(Appointment).get(appointment_id):
             return appointment
         else:
-            raise EntityNotFoundException
+            raise ValueError(
+                f"Error: Appointment with id {appointment_id} not found")
 
     def get_appointments_by_customer(self, customer_id):
+        from . import CustomerService
         """Returns a list of all appointments for a given customer.
 
         Args:
@@ -70,6 +72,7 @@ class AppointmentService:
             customer_id=customer_id).all()
 
     def list_appointments_by_service(self, service_id):
+        from . import ServiceService
         """Lists all appointments for a given service.
 
         Args:

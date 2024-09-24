@@ -1,4 +1,4 @@
-from helpers import (exit_program, list_all_salons)
+from helpers import (exit_program, list_all_salons, list_salon_by_id)
 
 
 def main():
@@ -9,6 +9,8 @@ def main():
             exit_program()
         if choice == '1':
             list_all_salons()
+        if choice == '2':
+            list_salon_by_id()
 
 
 def menu():
