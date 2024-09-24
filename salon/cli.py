@@ -1,4 +1,5 @@
-from helpers import (exit_program, list_all_salons, list_salon_by_id)
+from helpers import (exit_program, list_all_salons, list_salon_by_id,
+                     add_new_salon, update_salon_location)
 
 
 def main():
@@ -11,6 +12,10 @@ def main():
             list_all_salons()
         if choice == '2':
             list_salon_by_id()
+        if choice == '3':
+            add_new_salon()
+        if choice == '4':
+            update_salon_location()
 
 
 def menu():
