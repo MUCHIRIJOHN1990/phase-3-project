@@ -28,8 +28,9 @@ def seed_data():
     customers = []
     for _ in range(5):
         customer_name = fake.unique.name()
+        customer_phone = fake.unique.phone_number()
 
-        customer = Customer(name=customer_name)
+        customer = Customer(name=customer_name, phone=customer_phone)
         customers.append(customer)
         session.add(customer)
     session.commit()
@@ -62,11 +63,11 @@ def seed_data():
     for _ in range(10):
         customer_id = random.choice(customers).id
         service_id = random.choice(services).id
-        appointment_time = fake.date_time_this_year().replace(microsecond=0)
+        time_slot = fake.date_time_this_year().replace(microsecond=0)
 
         appointment = Appointment(customer_id=customer_id,
                                   service_id=service_id,
-                                  appointment_time=appointment_time)
+                                  time_slot=time_slot)
         appointments.append(appointment)
     session.add_all(appointments)
     session.commit()
