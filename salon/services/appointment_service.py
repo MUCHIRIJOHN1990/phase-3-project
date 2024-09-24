@@ -1,6 +1,5 @@
 from models import Appointment
 from helpers import EntityAlreadyExistsException, EntityNotFoundException
-from . import CustomerService, ServiceService
 
 
 class AppointmentService:
@@ -19,6 +18,7 @@ class AppointmentService:
         Returns:
             Appointment: The newly booked appointment.
         """
+        from . import CustomerService, ServiceService
         CustomerService(self.session).get_customer_by_id(customer_id)
         ServiceService(self.session).get_service_by_id(service_id)
 

@@ -1,6 +1,5 @@
 from models import Service
 from helpers import EntityAlreadyExistsException, EntityNotFoundException
-from salon_service import SalonService
 
 
 class ServiceService:
@@ -31,7 +30,7 @@ class ServiceService:
         self.session.commit()
         return new_service
 
-    def get_all_services(self) -> list[Service]:
+    def get_all_services(self):
         """Returns all services."""
 
         return self.session.query(Service).all()
@@ -57,6 +56,7 @@ class ServiceService:
 
         Raises EntityNotFoundException if the given salon doesn't exist.
         """
+        from . import SalonService
         SalonService(self.session).get_salon_by_id(salon_id)
         return self.session.query(Service).filter_by(salon_id=salon_id)
 
