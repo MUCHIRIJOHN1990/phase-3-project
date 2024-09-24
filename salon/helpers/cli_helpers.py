@@ -71,10 +71,22 @@ def list_customer_by_id():
 
 
 def add_new_customer():
-    from helpers import validate_int
     try:
         name = input("Enter customer name: ")
         phone = input("Enter phone number: ")
         print(CustomerService(session).create_customer(name=name, phone=phone))
+    except Exception as e:
+        print(e)
+
+
+def update_customer_phone_number():
+    from helpers import validate_int
+    try:
+        customer_id = input("Enter customer id: ")
+        new_phone_number = input("Enter new phone number: ")
+        validate_int(customer_id)
+        print(
+            CustomerService(session).update_customer_phone(
+                customer_id=customer_id, new_phone_number=new_phone_number))
     except Exception as e:
         print(e)
