@@ -1,4 +1,4 @@
-from services import SalonService, CustomerService
+from services import SalonService, CustomerService, ServiceService
 from models import session
 
 
@@ -8,8 +8,12 @@ def exit_program():
 
 
 def list_all_salons():
-    for salon in SalonService(session).get_all_salons():
-        print(salon)
+    salons = SalonService(session).get_all_salons()
+    if salons:
+        for salon in salons:
+            print(salon)
+    else:
+        print("No salons available. Add one to view it here.")
 
 
 def list_salon_by_id():
@@ -101,3 +105,13 @@ def remove_customer():
         print(f"Success: Customer with id {customer_id} deleted!")
     except Exception as e:
         print(e)
+
+
+def list_all_services():
+    services = ServiceService(session).get_all_services()
+
+    if services:
+        for service in services:
+            print(service)
+    else:
+        print("No services available. Add one to view it here.")

@@ -1,7 +1,8 @@
 from helpers import (exit_program, list_all_salons, list_salon_by_id,
                      add_new_salon, update_salon_location, remove_salon,
                      list_all_customers, list_customer_by_id, add_new_customer,
-                     update_customer_phone_number, remove_customer)
+                     update_customer_phone_number, remove_customer,
+                     list_all_services)
 
 
 def main():
@@ -30,6 +31,8 @@ def main():
             update_customer_phone_number()
         if choice == '10':
             remove_customer()
+        if choice == '11':
+            list_all_services()
 
 
 def menu():
