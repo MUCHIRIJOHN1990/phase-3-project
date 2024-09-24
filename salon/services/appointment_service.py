@@ -10,7 +10,7 @@ class AppointmentService:
         """Books an appointment for a customer with a given service at a specific time.
 
         Args:
-            customer_id: The ID of the customer for whom the appointment is being booked.
+            customer_id(int): The ID of the customer for whom the appointment is being booked.
             service_id: The ID of the service for which the appointment is being booked.
             time_slot: The time at which the appointment is being booked.
 
@@ -24,7 +24,7 @@ class AppointmentService:
         existing_appointment = self.session.query(Appointment).filter_by(
             customer_id=customer_id,
             service_id=service_id,
-            time_slot=time_slot)
+            time_slot=time_slot).first()
         if existing_appointment:
             raise ValueError(
                 "Error: Customer already has an appointment at this time.")

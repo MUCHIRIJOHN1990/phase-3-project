@@ -3,7 +3,10 @@ from helpers import (exit_program, list_all_salons, list_salon_by_id,
                      list_all_customers, list_customer_by_id, add_new_customer,
                      update_customer_phone_number, remove_customer,
                      list_all_services, list_service_by_id, add_service,
-                     update_service_price, remove_service)
+                     update_service_price, remove_service,
+                     list_all_appointments, list_appointments_by_customer,
+                     list_appointments_by_service, book_appointment,
+                     delete_appointment)
 
 
 def main():
@@ -42,6 +45,16 @@ def main():
             update_service_price()
         if choice == '15':
             remove_service()
+        if choice == '16':
+            list_all_appointments()
+        if choice == '17':
+            list_appointments_by_customer()
+        if choice == '18':
+            list_appointments_by_service()
+        if choice == '19':
+            book_appointment()
+        if choice == '20':
+            delete_appointment()
 
 
 def menu():

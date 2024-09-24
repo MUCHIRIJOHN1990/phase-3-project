@@ -1,35 +1,39 @@
 def validate_int(number):
     """
-    Validates if given input can be converted to an integer.
+    Validates if given input is a valid integer.
 
     Args:
-        number: Value to be validated
+        number (str): The value to be validated.
+
+    Returns:
+        int: The validated integer.
 
     Raises:
-        ValueError: If given input is not a valid integer
+        ValueError: If the given input is not a valid integer.
     """
-
     try:
-        int(number)
-    except:
-        raise ValueError(f"Error: {number} is not a valid input!")
+        return int(number)
+    except ValueError as e:
+        raise ValueError(f"Error: {number} is not a valid integer!", e) from e
 
 
 def validate_float(number):
     """
-    Validates if given input is a float.
+    Validates if given input is a valid float.
 
     Args:
-        number: The input to be validated
+        number: The value to be validated.
+
+    Returns:
+        float: The validated float.
 
     Raises:
-        ValueError: If given input is not a float
+        ValueError: If the given input is not a valid float.
     """
-
     try:
-        float(number)
-    except:
-        raise ValueError(f"Error: {number} is not a valid input!")
+        return float(number)
+    except ValueError as e:
+        raise ValueError(f"{number} is not a valid float!", e) from e
 
 
 def validate_price(number):

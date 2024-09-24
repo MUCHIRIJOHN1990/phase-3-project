@@ -77,4 +77,4 @@ class Appointment(Base):
                                        name='uq_customer_service_time'), )
 
     def __repr__(self):
-        return f"Appointment(created_at={self.created_at}, customer-id={self.customer_id}, service={self.service})"
+        return f"Appointment(created_at={self.created_at}, customer-id={self.customer_id}, service={self.service}, time_slot={self.time_slot})"
