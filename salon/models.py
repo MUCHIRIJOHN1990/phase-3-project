@@ -41,7 +41,7 @@ class Customer(Base):
                                 cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"Customer(name={self.name})"
+        return f"Customer(name={self.name}, phone={self.phone})"
 
 
 class Service(Base):

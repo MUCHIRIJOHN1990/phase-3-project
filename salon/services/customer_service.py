@@ -6,7 +6,7 @@ class CustomerService:
     def __init__(self, session):
         self.session = session
 
-    def create_customer(self, name: str, phone: str) -> Customer:
+    def create_customer(self, name, phone):
         """Creates a new Customer with the given name and phone number.
 
         Args:
@@ -48,7 +48,7 @@ class CustomerService:
                 f"Error: Customer with id {customer_id} not found!")
         return customer
 
-    def get_customer_by_name(self, name: str) -> Customer:
+    def get_customer_by_name(self, name):
         """Retrieves a customer by name.
 
         Args:
@@ -65,8 +65,7 @@ class CustomerService:
             raise ValueError(f"Error: Customer with name {name} not found!")
         return customer
 
-    def update_customer_phone(self, customer_id: int,
-                              new_phone: str) -> Customer:
+    def update_customer_phone(self, customer_id, new_phone):
         """Updates a customer's phone number.
 
         Args:
@@ -81,8 +80,7 @@ class CustomerService:
         self.session.commit()
         return customer
 
-    def update_customer_name(self, customer_id: int,
-                             new_name: str) -> Customer:
+    def update_customer_name(self, customer_id, new_name):
         """Updates a customer's name.
 
         Args:
@@ -97,7 +95,7 @@ class CustomerService:
         self.session.commit()
         return customer
 
-    def delete_customer(self, customer_id: int) -> None:
+    def delete_customer(self, customer_id):
         """Deletes a customer and cascades to their appointments.
 
         Args:

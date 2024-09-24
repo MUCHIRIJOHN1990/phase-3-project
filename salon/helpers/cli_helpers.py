@@ -68,3 +68,13 @@ def list_customer_by_id():
         print(CustomerService(session).get_customer_by_id(customer_id))
     except Exception as e:
         print(e)
+
+
+def add_new_customer():
+    from helpers import validate_int
+    try:
+        name = input("Enter customer name: ")
+        phone = input("Enter phone number: ")
+        print(CustomerService(session).create_customer(name=name, phone=phone))
+    except Exception as e:
+        print(e)
