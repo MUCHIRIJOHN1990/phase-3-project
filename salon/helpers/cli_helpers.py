@@ -115,3 +115,13 @@ def list_all_services():
             print(service)
     else:
         print("No services available. Add one to view it here.")
+
+
+def list_service_by_id():
+    from helpers import validate_int
+    try:
+        service_id = input("Enter service id: ")
+        validate_int(service_id)
+        print(ServiceService(session).get_service_by_id(service_id=service_id))
+    except Exception as e:
+        print(e)
